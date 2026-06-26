@@ -4,6 +4,8 @@ ECPi camera uses a $10 Raspberry Py Zero to connect any Raspberry Pi 2
 or 3 camera to an ECP5 FPGA, process the image, and display it on DVI
 or USB 3.  You can control the camera settings using the RPI Zero.
 
+![ECPi Camera Data Flow](images/ecpi-flow.png)
+
 
 ECPi Camera uses the Display Parallel Interface (DPI) protocol rather
 than MIPI CSI.  DPI is a very simple, low frequency, license free
@@ -22,7 +24,7 @@ need a microcontroller to run the software to set all of the registers
 in the image sensor. Best to start with the inexpensive [ECPi Camera
 RGB888 application](apps/rgb888).
 
-![ECPi Camera Schematic](images/icepi-zero)
+![IcePi Zero Photograph](images/icepi-zero.png)
 
 ECPi Camera uses a
 [Raspberry Pi Zero]
@@ -68,7 +70,7 @@ Be careful to apply equal pressure everywhere and to not bend the
 board.  A vice woudl be the best way to do it.
 
 ## FirmWare and GateWare
-The firmware and  gateware are in [apps/rgb888](apps/rgb888).
+The Raspberry Pi firmware and the IcePi Zero FPGA gateware are in [apps/rgb888](apps/rgb888).
 
 ## USB Output 
 For development it is fine to use the ECP5 DVI output.  Good to have a
