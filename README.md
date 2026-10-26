@@ -64,16 +64,15 @@ You will need the following parts.
 
 Because the RPI Zero runs hot, it is recommended to have it on top.
 If you are soldering, either device can have male or female
-headers. If you are [hammering headers]
-(https://shop.pimoroni.com/products/gpio-hammer-header?variant=35643318026). or [press fitting](https:/oshn.eu/ecpi-assembly) them,  it is
+headers. If you are 
+[hammering headers](https://shop.pimoroni.com/products/gpio-hammer-header?variant=35643318026). or [press fitting](https:/oshn.eu/ecpi-assembly) them,  it is
 recommended to have trickier male headers be on the less expensive RPI
 Zero facing down. 
-Here is a blog posing about [hammer headers]
-(https://learn.pimoroni.com/article/fitting-hammer-headers), scroll
+Here is a blog posing about 
+[hammer headers](https://learn.pimoroni.com/article/fitting-hammer-headers), scroll
 all the way down for how to do the female hat's header.  If you are
-concerned about using hammer headers, here is an article [reviewing
-the product]
-(https://hackaday.com/2017/01/16/review-hammer-installed-solderless-raspberry-pi-pin-headers/).
+concerned about using hammer headers, here is an article 
+[reviewing the product](https://hackaday.com/2017/01/16/review-hammer-installed-solderless-raspberry-pi-pin-headers/).
 Basically the article and the comments say that hammer headers work
 fine, and have some plusses and minuses.
 
