@@ -37,8 +37,8 @@ You will need the following parts.
 ![IcePi Zero Photograph](images/icepi-zero.png)
 
 1. [IcePi Zero](https://github.com/cheyao/icepi-zero) from [Crowd Supply](https://www.crowdsupply.com/icy-electronics/icepi-zero) or 
-   [Electrow](https://www.elecrow.com/icepi-zero.html?srsltid=AYCX9vJ-jhJyXHviFLSHDYzue3uK2wGutc1AkKseEEg6u17zY8MxGEy3).  It uses the [Lattice ECP5 FPGA]
-(https://www.latticesemi.com/view_document?document_id=50461). 
+   [Electrow](https://www.elecrow.com/icepi-zero.html?srsltid=AYCX9vJ-jhJyXHviFLSHDYzue3uK2wGutc1AkKseEEg6u17zY8MxGEy3).  It uses the 
+[Lattice ECP5 FPGA](https://www.latticesemi.com/view_document?document_id=50461). 
 2.  [Raspeberry Pi Zero W](https://www.raspberrypi.com/products/raspberry-pi-zero/)  or any member of [that family](https://oshn.eu/raspberry-pi-chips)
 3. A raspberry Pi compatible Camera.  There are too may to list. 
 4. A [raspberry Pi Zero camera cable](https://kamami.pl/en/ffc-fpc-cables/1178699-camera-cable-for-raspberry-pi-zero-38-cm-cb008-5906623404551.html) 15 pin to 22 pin.  Careful! It is not the standard RPi camera cable. 
