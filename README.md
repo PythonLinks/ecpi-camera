@@ -7,8 +7,8 @@ over DVI/HDMI or USB 3.
 ![ECPi Camera Data Flow](images/ecpi-flow.png)
 
 
-> [!CAUTION]
-> This repository is still under development. Oct 26, 2026.
+> [!CAUTION] This repository is still under development about 30 hours
+> per week. Oct 26, 2026.
 
 The Raspberry Pi Zero W converts the MIPI CSI signal into a Display
 Parallel Interface (DPI).  DPI is a very simple, license free protocol
