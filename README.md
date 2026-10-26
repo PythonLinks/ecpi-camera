@@ -44,7 +44,9 @@ You will need the following parts.
 4. A [raspberry Pi Zero camera cable](https://kamami.pl/en/ffc-fpc-cables/1178699-camera-cable-for-raspberry-pi-zero-38-cm-cb008-5906623404551.html) 15 pin to 22 pin.  Careful! It is not the standard RPi camera cable. 
 4. Male and Female Headers.
 5. A power supply.  USB Power is not enough for reliability. 
-6. USB-A to Micro-USB for connecting to power, or to a USB computer
+6. A USB-A to Micro-USB for connecting to power.
+7. Mini-HDMI (GDPI mini) to standard HDMI cable or adapter for 
+   RPI or FPGA video output.
 
 ## OPTIONAL
 1. [Hammer Headers](https://shop.pimoroni.com/en-eu/products/gpio-hammer-header?variant=35643318026) if you do not wish to solder. 
@@ -52,12 +54,10 @@ You will need the following parts.
    RPI zero. 
 2. USB (Male) to USB-A (Female) OTG cable to connect a mouse or joystick 
    to the RPI zero. Useful to control digital pan, tilt and zoom. 
-3. Mini-HDMI (GDPI mini) to standard HDMI cable or adapter for 
-   RPI or FPGA video output.
-4. A Mini HDMI to USB3 dongle if you want to USB3 video output.
-5. USB-C to Micro-USB if you want additional serial communication 
+3. A Mini HDMI to USB3 dongle if you want to USB3 video output.
+4. USB-C to Micro-USB if you want additional serial communication 
    between the tso chips.
-6. DVI Switchbox if you want to switch between your desktop, the FPGA
+5. DVI Switchbox if you want to switch between your desktop, the FPGA
    and the RPI Zeros output.
 
 ## Assembly
