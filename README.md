@@ -1,76 +1,85 @@
 ## ECPi Camera
 
-ECPi camera uses a $10 Raspberry Py Zero to connect any Raspberry Pi 2
-or 3 camera to an ECP5 FPGA, process the image, and display it on DVI
-or USB 3.  You can control the camera settings using the RPI Zero.
+ECPi camera uses a $12 Raspberry Py Zero W to connect any Raspberry Pi
+compatible camera to an ECP5 FPGA, process the image, and display it
+over DVI/HDMI or USB 3. 
 
 ![ECPi Camera Data Flow](images/ecpi-flow.png)
 
 
-ECPi Camera uses the Display Parallel Interface (DPI) protocol rather
-than MIPI CSI.  DPI is a very simple, low frequency, license free
-protocol for transmitting images using parallel single ended wires.
-There is the similar Digital Video Port (DVP) protocol but there are
-no cameras with a 24 bit wide DVP data path, so until now, only
-smaller or lower resolution DVP images were possible. For larger
-bandwidth, the more complex, higher frequency, proprietary MIPI CSI
-has to be used but there are no open source FPGAs with MIPI CSI hard
-cores currently available.  The Lattice Crosslink NX 17/40 is back
-ordered for two years. The Appicula project to support Gowin FPGAs
-with MIPI CSI hard cores just started and will take time to complete.
-There are closed source FPGAs with MIPI CSI, but they are all more
-expensive.  And even if you did buy a MIPI CSI FPGA, you would still
-need a microcontroller to run the software to set all of the registers
-in the image sensor. Best to start with the inexpensive [ECPi Camera
-RGB888 application](apps/rgb888).
+> [!CAUTION]
+> This repository is still under development. Oct 26, 2026.
+
+The Raspberry Pi Zero W converts the MIPI CSI signal into a Display
+Parallel Interface (DPI).  DPI is a very simple, license free protocol
+for transmitting images using parallel single ended wires.  While MIPI
+CSI is popular, it has two problems.  The full MIPI CSI stack is not
+supported by the open source YOSYS tools, and the Yosys compatible
+Lattice NX17/40 chips have a two year order backlog.
+
+## COMPETITIVE ANALYSIS
+
+There are closed source FPGAs with MIPI CSI support, but they are all
+more expensive.  And even if you did buy a MIPI CSI comptible FPGA,
+it would be good to have a microcontroller to run the software to set all
+of the registers in the image sensor. Best to start with the
+inexpensive [ECPi Camera RGB888 application](https://oshn.eu/rgb888).
+
+There is the similar Digital Video Port (DVP) protocol but there are no longer
+commercially available image sensors with a 24 bit wide DVP data path. Only
+lower resolution DVP images are possible. 
+
+## PARTS LIST
+
+You will need the following parts. 
 
 ![IcePi Zero Photograph](images/icepi-zero.png)
 
-ECPi Camera uses a
-[Raspberry Pi Zero]
-(https://www.raspberrypi.com/products/raspberry-pi-zero/) and a
-Rasperry Pi Camera version 2 or 3 to drive an 
-[IcePi Zero]
-(https://www.crowdsupply.com/icy-electronics/icepi-zero) board with a 
-[Lattice ECP5 FPGA]
+1. [IcePi Zero](https://github.com/cheyao/icepi-zero) from [Crowd Supply](https://www.crowdsupply.com/icy-electronics/icepi-zero) or 
+   [Electrow](https://www.elecrow.com/icepi-zero.html?srsltid=AYCX9vJ-jhJyXHviFLSHDYzue3uK2wGutc1AkKseEEg6u17zY8MxGEy3).  It uses the [Lattice ECP5 FPGA]
 (https://www.latticesemi.com/view_document?document_id=50461). 
-You can use either the $10 Raspberry Pi Zero (one core) or the $15
-Raspberry Pi Zero 2W (four cores, Bluetooth and WiFi). This is an
-entirely open source tool chain, although obviously the chips
-themselves are all proprietary.
+2.  [Raspeberry Pi Zero W](https://www.raspberrypi.com/products/raspberry-pi-zero/)  or any member of [that family](https://oshn.eu/raspberry-pi-chips)
+3. A raspberry Pi compatible Camera.  There are too may to list. 
+4. A [raspberry Pi Zero camera cable](https://kamami.pl/en/ffc-fpc-cables/1178699-camera-cable-for-raspberry-pi-zero-38-cm-cb008-5906623404551.html) 15 pin to 22 pin.  Careful! It is not the standard RPi camera cable. 
+4. Male and Female Headers.
+5. A power supply.  USB Power is not enough for reliability. 
+6. USB-A to Micro-USB for connecting to power, or to a USB computer
+
+## OPTIONAL
+1. [Hammer Headers](https://shop.pimoroni.com/en-eu/products/gpio-hammer-header?variant=35643318026) if you do not wish to solder. 
+1. USB (Male) to USB-A (Female) OTG cable to connect a keyboard to the
+   RPI zero. 
+2. USB (Male) to USB-A (Female) OTG cable to connect a mouse or joystick 
+   to the RPI zero. Useful to control digital pan, tilt and zoom. 
+3. Mini-HDMI (GDPI mini) to standard HDMI cable or adapter for 
+   RPI or FPGA video output.
+4. A Mini HDMI to USB3 dongle if you want to USB3 video output.
+5. USB-C to Micro-USB if you want additional serial communication 
+   between the tso chips.
+6. DVI Switchbox if you want to switch between your desktop, the FPGA
+   and the RPI Zeros output.
 
 ## Assembly
 
-You need a Raspberry Pi Zero, an IcePi Zero available from 
-[CrowdSupply](https://www.crowdsupply.com/icy-electronics/icepi-zero)
-or [Electrow](https://www.elecrow.com/icepi-zero.html), any Raspberry 
-Pi Camera version 2 or 3, a camera  cable and a male and a female
-header. The camera cable should convert between the standard 24 pin
-camera flexible printed cable socket and the Raspberry Pi Zero's 15
-pin FPC socket. The standard header configuration is male headers on
-the RPI Zero facing up, and female headers on the IcePi Zero facing
-down. You can solder them, or if you are not comfortable with your
-soldering skills, what I am using is the 
-[Pimoni Hammer headers]
-(https://shop.pimoroni.com/products/gpio-hammer-header?variant=35643318026).
-Here is a blog posing about [how to do it]
-(https://learn.pimoroni.com/article/fitting-hammer-headers), 
-scroll all the way down for how to do the female hat header.
-
-If you are concerned about using hammer headers, here is an article 
-[reviewing the product]
+Because the RPI Zero runs hot, it is recommended to have it on top.
+If you are soldering, either device can have male or female
+headers. If you are [hammering headers]
+(https://shop.pimoroni.com/products/gpio-hammer-header?variant=35643318026). or [press fitting](https:/oshn.eu/ecpi-assembly) them,  it is
+recommended to have trickier male headers be on the less expensive RPI
+Zero facing down. 
+Here is a blog posing about [hammer headers]
+(https://learn.pimoroni.com/article/fitting-hammer-headers), scroll
+all the way down for how to do the female hat's header.  If you are
+concerned about using hammer headers, here is an article [reviewing
+the product]
 (https://hackaday.com/2017/01/16/review-hammer-installed-solderless-raspberry-pi-pin-headers/).
-Basically it and the comments say that it works fine, 
-and has some plusses and minuses.   "Solder is not glue".  In the
-automotive industry the fittings are press fit, solder does not
-survive temperature cycling.  But the automotive holes are a
-particular size, andthe gold platting is a little thicker.  Pimoroni
-and the article tested the electrical characteristics and all is fine.
-Be careful to apply equal pressure everywhere and to not bend the 
-board.  A vice woudl be the best way to do it.
+Basically the article and the comments say that hammer headers work
+fine, and have some plusses and minuses.
+
+My preference is to use the Hammer Header, but do not hammer them, use a vice to press fit them. 
 
 ## FirmWare and GateWare
-The Raspberry Pi firmware and the IcePi Zero FPGA gateware are in [apps/rgb888](apps/rgb888).
+Here is the [Raspberry Pi firmware](./firmware) and the [IcePi Zero FPGA gateware](./gateware)
 
 ## USB Output 
 For development it is fine to use the ECP5 DVI output.  Good to have a

@@ -1,13 +1,10 @@
 # Source files shared between synthesis and simulation
-SOURCE_FILES := hdl/vga.sv \
-			    dvi_out.sv \
+SOURCE_FILES := gateware/top.v \
+                gateware/vga2tmds.sv
 
 # Full file list for synthesis (adds serializer, encoder, PLL, top)
 VERILOG_FILES := ${SOURCE_FILES} \
-			     hdl/vga2tmds.sv \
-				 hdl/tmds_encoder.sv \
-				 hdl/pll.v \
-				 top/top.sv \
+                gateware/ecpi-pll.v
 
 # Subset used for linting and simulation (no PLL or top-level)
 SIMULATION_FILES := ${SOURCE_FILES} \
