@@ -1,6 +1,6 @@
 ## [ECPi Camera](https://oshn.eu/ecpi-camera)
 
-ECPi camera uses a ~$14 Raspberry Py Zero W to connect any Raspberry Pi
+ECPi camera uses a ~$18 Raspberry Py Zero W to connect any Raspberry Pi
 compatible camera to an ECP5 FPGA, process the image, and display it
 over DVI/HDMI or USB 3.  It will be used to develop better [edge detection 
 algorithms](https://oshn.eu/edge-detectors). 
@@ -19,7 +19,7 @@ CSI is popular, it has two problems.  The full MIPI CSI stack is not
 the Yosys compatible Lattice NX17/40 chips have a two year order
 backlog.
 
-## COMPETITIVE ANALYSIS
+## COMPETITIVE MARKET ANALYSIS
 
 There are closed source FPGAs with MIPI CSI support, but they are all
 more expensive.  And even if you did buy a MIPI CSI comptible FPGA, it
@@ -43,8 +43,7 @@ You will need the following parts.
 1. [IcePi Zero](https://github.com/cheyao/icepi-zero) from [Crowd Supply](https://www.crowdsupply.com/icy-electronics/icepi-zero) or 
    [Electrow](https://www.elecrow.com/icepi-zero.html?srsltid=AYCX9vJ-jhJyXHviFLSHDYzue3uK2wGutc1AkKseEEg6u17zY8MxGEy3).  IcePi Zero uses the 
 [Lattice ECP5 FPGA](https://www.latticesemi.com/view_document?document_id=50461). 
-2.  [Raspeberry Pi Zero
-    W](https://www.raspberrypi.com/products/raspberry-pi-zero/) or any
+2.  [Raspeberry Pi Zero W](https://www.raspberrypi.com/products/raspberry-pi-zero/) or any
     member of [the RPi family](https://oshn.eu/raspberry-pi-chips)
     except the pico.
 3. A micro SD card. Minimum 32 GByes, maximum 256 GBytes.
@@ -57,13 +56,13 @@ You will need the following parts.
 9. A USB-A to Micro-USB for connecting to power.
 10. Mini-HDMI (GDPI mini) to standard HDMI cable or adapter for 
    RPI or FPGA video output.
+11.  USB-A to USB-C, or USB-C to USB-C for programming the FPGA. 
+
 
 ## OPTIONAL
 1. [Hammer Headers](https://shop.pimoroni.com/en-eu/products/gpio-hammer-header?variant=35643318026) if you do not wish to solder. 
-1. USB (Male) to USB-A (Female) OTG cable to connect a keyboard to the
-   RPI zero. 
-2. USB (Male) to USB-A (Female) OTG cable to connect a mouse or joystick 
-   to the RPI zero. Useful to control digital pan, tilt and zoom. 
+1. USB (Male) to USB-A (Female) OTG cable to connect a keyboard, mouse
+   or joystick to the RPI zero or IcePi Zero.
 3. A Mini HDMI to USB3 dongle if you want USB3 video output.
 4. USB-C to Micro-USB if you want additional serial communication 
    between the tso chips.
@@ -91,6 +90,29 @@ fine, and have some plusses and minuses.
 My preference is to use the Hammer Headers, but do not hammer them,
 use a vice to press fit them.  Press fitting is better for higher
 volume production.
+
+## Booting the Raspberry Pi Zero W
+
+[RTFM](https://www.raspberrypi.com/documentation/computers/getting-started.html)
+
+RPi Zero runs a whole Linux operating system.  For security, the
+recommended practive is to install ssh keys, and disable password
+login. If you have no experience with linux system administraitons, I
+have found Claude.ai to be quite good at this stuff.
+
+Install the Raspberry Pi **Lite** OS on SD card using the SD Card
+Reader and the [Raspberry Pi
+Installer](https://www.raspberrypi.com/documentation/computers/getting-started.html#install)
+Configure the Wifi to connect to the device and allow software to be
+downloaded.  This is the easy path, it is supported by the installer.
+It is much easier to use wifi then the USB connection.  You just need
+your wifi SSID and password.  Experienced FPGA developers will expect
+to talk to the board over USB.  There are three problems with the USB
+access.  If you are using USB, the expectation is that it provides
+enough power, it does not.  A separate power supply, such as a cell
+phone charger, is needed.  The second problem is that when you need to
+download software to the device, configuring ethernet over USB is
+tricky. And finally configuring tty over USB is also tricky.
 
 ## FirmWare and GateWare
 Here is the [Raspberry Pi firmware](./firmware) and the [IcePi Zero
