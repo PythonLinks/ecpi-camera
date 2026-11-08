@@ -15,7 +15,7 @@ capabilities of the RPi camera ecosystem.  An end user could plug the
 DVI into a USB 3 dongle and receive the images on the desktop and save
 or broadcast the images.
 
-This is much less expensive that
+This system is much less expensive that
 other FPGA image processing solutions, and it leverages the huge RPi
 camera ecosystem.  This project is great for teaching and prototyping.
 It will be used to develop better [edge detection
@@ -34,32 +34,33 @@ is a higher frequency solution, requiring more expensive FPGA's,
 circuit boards, and engineering talent.
 
 ## COMPETITIVE MARKET ANALYSIS
-
 There are closed source FPGAs with MIPI CSI support, but they are all
-more expensive.  And even if you did buy a MIPI CSI comptible FPGA, it
-would be good to have a microcontroller to run the open source
-software to set all of the registers in the image sensor. Also MIPI
-CSI runs at much higher frequencies, so the boards are more difficult
-to design, and they are much much harder to debug.  
+more expensive.  MIPI CSI runs at much higher frequencies, so the
+boards are more difficult to design, and they are much much harder to
+debug.  And even if you did buy a MIPI CSI compatible FPGA, it would be
+good to have a microcontroller to run the open source software to set
+all of the registers in the image sensor.
 
 ![Market Analysis](images/market.png)
 
+The vertical axis is the bandwidth in gigabits per second.  The
+horizontal bandwidth lines are some of the interesting display
+modes. Their bandwidth is calculated as pixel clock × 24 bits. It is
+the pipe bandwidth, not the image bandwidth: the active image is
+smaller. The ESP32 solution processes 8 bits per clock.  ECPi
+processes 24 bits per clock.  The tinyCLUNX33 uses
+8b/10b encoding, so the bandwidth is 4/5 of the 5 Gbit/s USB pipe.
+Here are the details of the competitive analysis.
 
 | Setup | Parts | Price | Link | Bandwidth |
 |---|---|---|---|---|
 | ESP32-S3 | €43 [ESP32-S3](https://www.espressif.com/en/products/socs/esp32-s3/) + €14 [DVP Camera](https://www.waveshare.com/ov5640-camera-board-b.htm) | €57 | 40 MHz × 8 bits | 0.32 Gb/s |
-| ECPi-Camera<br>CDC | €71 [IcePi Zero](https://www.crowdsupply.com/icy-electronics/icepi-zero) + €16 [Raspberry Pi Zero W](https://www.raspberrypi.com/products/raspberry-pi-zero-w/) + €18 [Raspberry Pi Camera Module 2](https://www.raspberrypi.com/products/camera-module-v2/) | €105 | 65 MHz × 24 bits (XGA) | 1.56 Gb/s |
-| ECPi-Camera<br>Lite | Same parts as ECPI-Camera CDC | €105 | 36 MHz × 24 bits (800×600@56, 216 MHz / 6, shared clock) | 0.864 Gb/s |
+| ECPi Lite | €71 [IcePi Zero](https://www.crowdsupply.com/icy-electronics/icepi-zero) + €16 [Raspberry Pi Zero W](https://www.raspberrypi.com/products/raspberry-pi-zero-w/) + €18 [Raspberry Pi Camera Module 2](https://www.raspberrypi.com/products/camera-module-v2/) | €105 | 36 MHz × 24 bits (800×600@56, 216 MHz / 6, shared clock) | 0.864 Gb/s |
+| ECPi CDC | Same parts as ECPi Lite | €105 | 65 MHz × 24 bits (XGA) | 1.56 Gb/s |
 | tinyCLUNX33 | €228 [tinyCLUNX33 Developer Kit - MIPI to USB]() + €23 [IMX219 Raspberry Pi Camera v2]() | €251 | USB 3: 5 Gb/s × 8/10 encoding | 4.00 Gb/s |
 
 
-The vertical axis is the bandwidth in gigabits per second.  
-The horizontal bandwidth lines are some of the interesting display
-modes. Their bandwidth is calculated as pixel clock × 24 bits. It
-is the pipe bandwidth, not the image bandwidth: the active image is
-smaller.  ECPi processes 24 bits per clock. The ESP32 solution
-processes 8 bits per clock.  The tinyCLUNX33 uses 8b/10b encoding, so
-the bandwidth is 4/5 of the 5 Gbit/s USB pipe.
+
 
 The horizontal lines represent the following standard display modes.
 

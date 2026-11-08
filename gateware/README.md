@@ -1,6 +1,6 @@
-# ECPI Gateware
+# ECPi Gateware
 
-This directory holds the RTL which will run on the IcePi Zeroe. 
+This directory holds the RTL which will run on the IcePi Zero. 
 
 > [!CAUTION]
 > October 30th 2026. Work is just starting on this part of the project. 

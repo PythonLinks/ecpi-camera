@@ -1,4 +1,4 @@
-# ECPI Camera Gateware
+# ECPi Camera Gateware
 
 Here is the gateware Verilog for ECPi Camera. 
 
