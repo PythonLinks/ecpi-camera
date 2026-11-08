@@ -44,9 +44,9 @@ registers in the image sensor.
 In the Open Source world, the Lattice Crosslink NX17/40 with hard core
 MIPI D-PHy are now once again available.  They are supported by YOSYS
 and Nextpnr and the open source [Circuit Valley MIPI CSI
-IP](https://github.com/circuitvalley/CHC5_Open_Camera). RPi ISP.  To
-beneift from the D-phy and RPi, they would require an RPi 4 with MIPI
-CSI, which is also more expensive than the RPi Zero W. 
+IP](https://github.com/circuitvalley/CHC5_Open_Camera).  To beneift
+from the D-phy and RPi MIPI DSI output, , they would require an RPi 4,
+which is also more expensive than ECPI's RPi Zero W.
 
 ![Market Analysis](images/market.png)
 
