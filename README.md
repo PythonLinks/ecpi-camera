@@ -1,23 +1,35 @@
 ## [ECPi Camera](https://oshn.eu/ecpi-camera)
 
-ECPi camera uses a ~$18 Raspberry Py Zero W to connect any Raspberry Pi
-compatible camera to an ECP5 FPGA, process the image, and display it
-over DVI/HDMI or USB 3.  It will be used to develop better [edge detection 
-algorithms](https://oshn.eu/edge-detectors). 
+ECPi camera uses a ~$18 Raspberry Py Zero W to connect a Raspberry Pi
+(RPi) compatible camera to an ECP5 FPGA, process the image, and
+display it over DVI/HDMI or USB 3.  This is much less expensive that
+other FPGA image processing solutions, and it leverages the huge RPi
+camera ecosystem.  This project is great for teaching and prototyping.
+It will be used to develop better [edge detection
+algorithms](https://oshn.eu/edge-detectors).
 
 ![ECPi Camera Data Flow](images/ecpi-flow.png)
 
-> [!CAUTION]
-> This repository is still under development, about 30 hours
-> per week. Oct 26, 2026.
+The above diagram shows the data flow. 
+Camera -> MIPI CSI -> RPI Zero W -> DPI -> FPGA -> DVI. 
+
+An FPGA engineer could then insert their custom logic running on the
+FPGA into this pipeline.  An embedded engineer could leverage the
+capabilities of the RPi camera ecosystem.  An end user could plug the
+DVI into a USB 3 dongle and receive the images on the desktop and save
+or broadcast the images.
+
+> [!CAUTION] This repository is still under development, about 30
+> hours per week. Nov 8, 2026.  The firmware is written and mostly
+> tested. Just waiting for the new camera to arrive.  The gateware is
+> just being started on.
 
 The Raspberry Pi Zero W converts the MIPI CSI signal into a Display
 Parallel Interface (DPI).  DPI is a very simple, license free protocol
 for transmitting images using parallel single ended wires.  While MIPI
-CSI is popular, it has two problems.  The full MIPI CSI stack is not
-(yet) supported by the open source YOSYS tools, and even if it were,
-the Yosys compatible Lattice NX17/40 chips have a two year order
-backlog.
+CSI is popular, it is not compatible with less expensive FPGAs.  MIPI
+is a higher frequency solution requiring more expensive FPGA's,
+circuit boards, and engineering talent.
 
 ## COMPETITIVE MARKET ANALYSIS
 
@@ -26,13 +38,39 @@ more expensive.  And even if you did buy a MIPI CSI comptible FPGA, it
 would be good to have a microcontroller to run the open source
 software to set all of the registers in the image sensor. Also MIPI
 CSI runs at much higher frequencies, so the boards are more difficult
-to design, and they are much much harder to debug.  Best to start with
-the inexpensive [ECPi Camera RGB888
-application](https://oshn.eu/rgb888).
+to design, and they are much much harder to debug.  
+
+![Market Analysis](images/market.png)
 
 There is the similar Digital Video Port (DVP) protocol but there are
 no longer image sensors with a 24 bit wide DVP data paths. Only lower
 resolution DVP image sensors are commercially available.
+
+
+| Setup | Parts | Price | Link | Bandwidth |
+|---|---|---|---|---|
+| ESP32-S3 | €43 [ESP32-S3](https://www.espressif.com/en/products/socs/esp32-s3/) + €14 [DVP Camera](https://www.waveshare.com/ov5640-camera-board-b.htm) | €57 | 40 MHz × 8 bits | 0.32 Gb/s |
+| ECPI-Camera<br>CDC | €71 [IcePi Zero](https://www.crowdsupply.com/icy-electronics/icepi-zero) + €16 [Raspberry Pi Zero W](https://www.raspberrypi.com/products/raspberry-pi-zero-w/) + €18 [Raspberry Pi Camera Module 2](https://www.raspberrypi.com/products/camera-module-v2/) | €105 | 65 MHz × 24 bits (XGA) | 1.56 Gb/s |
+| ECPI-Camera<br>Lite | Same parts as ECPI-Camera CDC | €105 | 36 MHz × 24 bits (800×600@56, 216 MHz / 6, shared clock) | 0.864 Gb/s |
+| tinyCLUNX33 | €228 [tinyCLUNX33 Developer Kit - MIPI to USB]() + €23 [IMX219 Raspberry Pi Camera v2]() | €251 | USB 3: 5 Gb/s × 8/10 encoding | 4.00 Gb/s |
+
+The bits are not equivalent: the ESP32 carries RGB565 or JPEG, DPI
+carries RGB888, USB carries RAW10.
+
+The horizontal lines represent the following standard display modes.
+
+| Name | Resolution | Refresh | Pixel Clock | Bandwidth |
+|---|---|---|---|---|
+| VGA | 640×480 | 60 Hz | 25.175 MHz | 0.604 Gb/s |
+| SVGA | 800×600 | 56 Hz | 36.000 MHz | 0.864 Gb/s |
+| XGA | 1024×768 | 60 Hz | 65.000 MHz | 1.560 Gb/s |
+| 1080p | 1920×1080 | 60 Hz | 148.5 MHz | 3.564 Gb/s |
+
+The bandwidth is pixel clock × 24 bits.  It includes the blanking
+intervals (front porch, sync pulse and back porch) but ignores the
+HSync, VSync, DE and clock signals.  It is the pipe bandwidth, not the
+image bandwidth: the active image is smaller.
+
 
 ## PARTS LIST
 
@@ -43,9 +81,7 @@ You will need the following parts.
 1. [IcePi Zero](https://github.com/cheyao/icepi-zero) from [Crowd Supply](https://www.crowdsupply.com/icy-electronics/icepi-zero) or 
    [Electrow](https://www.elecrow.com/icepi-zero.html?srsltid=AYCX9vJ-jhJyXHviFLSHDYzue3uK2wGutc1AkKseEEg6u17zY8MxGEy3).  IcePi Zero uses the 
 [Lattice ECP5 FPGA](https://www.latticesemi.com/view_document?document_id=50461). 
-2.  [Raspeberry Pi Zero W](https://www.raspberrypi.com/products/raspberry-pi-zero/) or any
-    member of [the RPi family](https://oshn.eu/raspberry-pi-chips)
-    except the pico.
+2.  [Raspeberry Pi Zero W](https://www.raspberrypi.com/products/raspberry-pi-zero-w/). 
 3. A micro SD card. Minimum 32 GByes, maximum 256 GBytes.
 4. A micro SD card reader/writer. 
 5. A raspberry Pi compatible Camera.  There are too many to list. 
