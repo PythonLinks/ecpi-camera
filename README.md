@@ -2,11 +2,7 @@
 
 ECPi camera uses a ~$18 Raspberry Py Zero W to connect a Raspberry Pi
 (RPi) compatible camera to an ECP5 FPGA, process the image, and
-display it over DVI/HDMI or USB 3.  This is much less expensive that
-other FPGA image processing solutions, and it leverages the huge RPi
-camera ecosystem.  This project is great for teaching and prototyping.
-It will be used to develop better [edge detection
-algorithms](https://oshn.eu/edge-detectors).
+display it over DVI/HDMI or USB 3.  
 
 ![ECPi Camera Data Flow](images/ecpi-flow.png)
 
@@ -18,6 +14,12 @@ FPGA into this pipeline.  An embedded engineer could leverage the
 capabilities of the RPi camera ecosystem.  An end user could plug the
 DVI into a USB 3 dongle and receive the images on the desktop and save
 or broadcast the images.
+
+This is much less expensive that
+other FPGA image processing solutions, and it leverages the huge RPi
+camera ecosystem.  This project is great for teaching and prototyping.
+It will be used to develop better [edge detection
+algorithms](https://oshn.eu/edge-detectors).
 
 > [!CAUTION] This repository is still under development, about 30
 > hours per week. Nov 8, 2026.  The firmware is written and mostly
@@ -54,10 +56,14 @@ resolution DVP image sensors are commercially available.
 | ECPI-Camera<br>Lite | Same parts as ECPI-Camera CDC | €105 | 36 MHz × 24 bits (800×600@56, 216 MHz / 6, shared clock) | 0.864 Gb/s |
 | tinyCLUNX33 | €228 [tinyCLUNX33 Developer Kit - MIPI to USB]() + €23 [IMX219 Raspberry Pi Camera v2]() | €251 | USB 3: 5 Gb/s × 8/10 encoding | 4.00 Gb/s |
 
-The bits are not equivalent: the ESP32 carries RGB565 or JPEG, DPI
-carries RGB888, USB carries RAW10.
-
 The horizontal lines represent the following standard display modes.
+
+The horizontal bandwidth is pixel clock × 24 bits. It is the pipe bandwidth, not the image bandwidth: the active image is smaller.
+
+The vertical axis is the bandwidth in gigabits per second.  For the
+display modes and the ECPI setups it is pixel clock × 24 bits.  The
+ESP32 solution processes 8 bits per clock.  The tinyCLUNX33 uses 8b/10b
+encoding, so the bandwidth is 4/5 of the 5 Gbit/s USB pipe.
 
 | Name | Resolution | Refresh | Pixel Clock | Bandwidth |
 |---|---|---|---|---|
@@ -66,10 +72,7 @@ The horizontal lines represent the following standard display modes.
 | XGA | 1024×768 | 60 Hz | 65.000 MHz | 1.560 Gb/s |
 | 1080p | 1920×1080 | 60 Hz | 148.5 MHz | 3.564 Gb/s |
 
-The bandwidth is pixel clock × 24 bits.  It includes the blanking
-intervals (front porch, sync pulse and back porch) but ignores the
-HSync, VSync, DE and clock signals.  It is the pipe bandwidth, not the
-image bandwidth: the active image is smaller.
+
 
 
 ## PARTS LIST
