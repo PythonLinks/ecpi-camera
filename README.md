@@ -30,7 +30,7 @@ The Raspberry Pi Zero W converts the MIPI CSI signal into a Display
 Parallel Interface (DPI).  DPI is a very simple, license free protocol
 for transmitting images using parallel single ended wires.  While MIPI
 CSI is popular, it is not compatible with less expensive FPGAs.  MIPI
-is a higher frequency solution requiring more expensive FPGA's,
+is a higher frequency solution, requiring more expensive FPGA's,
 circuit boards, and engineering talent.
 
 ## COMPETITIVE MARKET ANALYSIS
@@ -44,26 +44,24 @@ to design, and they are much much harder to debug.
 
 ![Market Analysis](images/market.png)
 
-There is the similar Digital Video Port (DVP) protocol but there are
-no longer image sensors with a 24 bit wide DVP data paths. Only lower
-resolution DVP image sensors are commercially available.
-
 
 | Setup | Parts | Price | Link | Bandwidth |
 |---|---|---|---|---|
 | ESP32-S3 | €43 [ESP32-S3](https://www.espressif.com/en/products/socs/esp32-s3/) + €14 [DVP Camera](https://www.waveshare.com/ov5640-camera-board-b.htm) | €57 | 40 MHz × 8 bits | 0.32 Gb/s |
-| ECPI-Camera<br>CDC | €71 [IcePi Zero](https://www.crowdsupply.com/icy-electronics/icepi-zero) + €16 [Raspberry Pi Zero W](https://www.raspberrypi.com/products/raspberry-pi-zero-w/) + €18 [Raspberry Pi Camera Module 2](https://www.raspberrypi.com/products/camera-module-v2/) | €105 | 65 MHz × 24 bits (XGA) | 1.56 Gb/s |
-| ECPI-Camera<br>Lite | Same parts as ECPI-Camera CDC | €105 | 36 MHz × 24 bits (800×600@56, 216 MHz / 6, shared clock) | 0.864 Gb/s |
+| ECPi-Camera<br>CDC | €71 [IcePi Zero](https://www.crowdsupply.com/icy-electronics/icepi-zero) + €16 [Raspberry Pi Zero W](https://www.raspberrypi.com/products/raspberry-pi-zero-w/) + €18 [Raspberry Pi Camera Module 2](https://www.raspberrypi.com/products/camera-module-v2/) | €105 | 65 MHz × 24 bits (XGA) | 1.56 Gb/s |
+| ECPi-Camera<br>Lite | Same parts as ECPI-Camera CDC | €105 | 36 MHz × 24 bits (800×600@56, 216 MHz / 6, shared clock) | 0.864 Gb/s |
 | tinyCLUNX33 | €228 [tinyCLUNX33 Developer Kit - MIPI to USB]() + €23 [IMX219 Raspberry Pi Camera v2]() | €251 | USB 3: 5 Gb/s × 8/10 encoding | 4.00 Gb/s |
 
+
+The vertical axis is the bandwidth in gigabits per second.  
+The horizontal bandwidth lines are some of the interesting display
+modes. Their bandwidth is calculated as pixel clock × 24 bits. It
+is the pipe bandwidth, not the image bandwidth: the active image is
+smaller.  ECPi processes 24 bits per clock. The ESP32 solution
+processes 8 bits per clock.  The tinyCLUNX33 uses 8b/10b encoding, so
+the bandwidth is 4/5 of the 5 Gbit/s USB pipe.
+
 The horizontal lines represent the following standard display modes.
-
-The horizontal bandwidth is pixel clock × 24 bits. It is the pipe bandwidth, not the image bandwidth: the active image is smaller.
-
-The vertical axis is the bandwidth in gigabits per second.  For the
-display modes and the ECPI setups it is pixel clock × 24 bits.  The
-ESP32 solution processes 8 bits per clock.  The tinyCLUNX33 uses 8b/10b
-encoding, so the bandwidth is 4/5 of the 5 Gbit/s USB pipe.
 
 | Name | Resolution | Refresh | Pixel Clock | Bandwidth |
 |---|---|---|---|---|
