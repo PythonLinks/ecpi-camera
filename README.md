@@ -9,8 +9,8 @@ display it over DVI/HDMI or USB 3.
 The above diagram shows the data flow. 
 Camera -> MIPI CSI -> RPI Zero W -> DPI -> FPGA -> DVI. 
 
-An FPGA engineer could then insert their custom logic running on the
-FPGA into this pipeline.  An embedded engineer could leverage the
+An FPGA engineer could then insert their custom logic 
+into the FPGA pipeline.  An embedded engineer could leverage the
 capabilities of the RPi camera ecosystem.  An end user could plug the
 DVI into a USB 3 dongle and receive the images on the desktop and save
 or broadcast the images.
@@ -28,20 +28,17 @@ algorithms](https://oshn.eu/edge-detectors).
 
 The Raspberry Pi Zero W converts the MIPI CSI signal into a Display
 Parallel Interface (DPI).  DPI is a very simple, license free protocol
-for transmitting images using parallel single ended wires.  While MIPI
-CSI is popular, it is not compatible with less expensive FPGAs.  MIPI
-is a higher frequency solution, requiring more expensive FPGA's,
-circuit boards, and engineering talent.
+for transmitting images using parallel single ended wires. 
 
 ## COMPETITIVE MARKET ANALYSIS
 
-There are FPGA boards with MIPI CSI hard core D-Phys, but hey are more
-expensive.  The wires run at much higher frequencies, so the boards
-are more difficult to design, and they are much much harder to debug.
-Recreating the full RPi ISP on an such an FPGA would probably require
-more LUTs than are available on the board.  And even if you did buy a
-FPGA with a MIPI CSI hard core D-Phy, it would be good to have a
-microcontrollerto run the open source software to set all of the
+While MIPI CSI is popular for image processing, it requires more
+expensive FPGA boards.  The wires run at much higher frequencies, so
+the boards are more difficult to design, and they are much much harder
+to debug.  Recreating the full RPi ISP on an such an FPGA would
+probably require more LUTs than are available.  And even if you did
+buy a FPGA with a MIPI CSI hard core D-Phy, it would be good to have a
+microcontroller to run the open source software to set all of the
 registers in the image sensor.
 
 In the Open Source world, the Lattice Crosslink NX17/40 with hard core
@@ -49,7 +46,7 @@ MIPI D-PHy are now once again available.  They are supported by YOSYS
 and Nextpnr and the open source [Circuit Valley MIPI CSI
 IP](https://github.com/circuitvalley/CHC5_Open_Camera). RPi ISP.  To
 beneift from the D-phy and RPi, they would require an RPi 4 with MIPI
-CSI, which is also more expensive.
+CSI, which is also more expensive than the RPi Zero W. 
 
 ![Market Analysis](images/market.png)
 
