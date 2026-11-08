@@ -34,12 +34,22 @@ is a higher frequency solution, requiring more expensive FPGA's,
 circuit boards, and engineering talent.
 
 ## COMPETITIVE MARKET ANALYSIS
-There are closed source FPGAs with MIPI CSI support, but they are all
-more expensive.  MIPI CSI runs at much higher frequencies, so the
-boards are more difficult to design, and they are much much harder to
-debug.  And even if you did buy a MIPI CSI compatible FPGA, it would be
-good to have a microcontroller to run the open source software to set
-all of the registers in the image sensor.
+
+There are FPGA boards with MIPI CSI hard core D-Phys, but hey are more
+expensive.  The wires run at much higher frequencies, so the boards
+are more difficult to design, and they are much much harder to debug.
+Recreating the full RPi ISP on an such an FPGA would probably require
+more LUTs than are available on the board.  And even if you did buy a
+FPGA with a MIPI CSI hard core D-Phy, it would be good to have a
+microcontrollerto run the open source software to set all of the
+registers in the image sensor.
+
+In the Open Source world, the Lattice Crosslink NX17/40 with hard core
+MIPI D-PHy are now once again available.  They are supported by YOSYS
+and Nextpnr and the open source [Circuit Valley MIPI CSI
+IP](https://github.com/circuitvalley/CHC5_Open_Camera). RPi ISP.  To
+beneift from the D-phy and RPi, they would require an RPi 4 with MIPI
+CSI, which is also more expensive.
 
 ![Market Analysis](images/market.png)
 
