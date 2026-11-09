@@ -9,6 +9,11 @@ display it over DVI/HDMI or USB 3.
 The above diagram shows the data flow. 
 Camera -> MIPI CSI -> RPI Zero W -> DPI -> FPGA -> DVI. 
 
+The following diagram shows just how much functionality the RPi Zero W 
+Image Signal Processor (ISP) provides. 
+
+![The RPi Image Signal Processor](images/RPiISP.png)
+
 An FPGA engineer could then insert their custom logic 
 into the FPGA pipeline.  An embedded engineer could leverage the
 capabilities of the RPi camera ecosystem.  An end user could plug the
@@ -91,9 +96,9 @@ You will need the following parts.
    [Electrow](https://www.elecrow.com/icepi-zero.html?srsltid=AYCX9vJ-jhJyXHviFLSHDYzue3uK2wGutc1AkKseEEg6u17zY8MxGEy3).  IcePi Zero uses the 
 [Lattice ECP5 FPGA](https://www.latticesemi.com/view_document?document_id=50461). 
 2.  [Raspeberry Pi Zero W](https://www.raspberrypi.com/products/raspberry-pi-zero-w/). 
-3. A micro SD card. Minimum 32 GByes, maximum 256 GBytes.
+3. A micro SD card. Minimum 32 GBytes, maximum 256 GBytes.
 4. A micro SD card reader/writer. 
-5. A raspberry Pi compatible Camera.  There are too many to list. 
+5. A raspberry Pi compatible Camera.  There are too many to list. But not the OV5647, it does not support the correct HDMI modes. 
 6. A [raspberry Pi Zero camera cable](https://kamami.pl/en/ffc-fpc-cables/1178699-camera-cable-for-raspberry-pi-zero-38-cm-cb008-5906623404551.html) 15 pin to 22 pin.  Careful! It is not the standard RPi camera cable.
 7. Male and Female Headers.
 8. A power supply such as a cell phone charger.  USB Power is not
