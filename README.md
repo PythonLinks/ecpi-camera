@@ -145,8 +145,9 @@ You have to make sure that the voltage supply pins do not touch, that would
 fry something.  There are 4 voltage supply pins. 
 Here is a [diagram of the pinout](https://pinout.xyz/) for the usual 
 orientation.  Make sure you orient the board correctly.  Here is a 
+diagram of the pins when the pins are on the back of the board. 
 ![diagram of the reverse pinout](./images/RPiInvertedPins.png) 
-for the pins inserted on the back of the board. 
+
 
 
 ## Booting the Raspberry Pi Zero W
