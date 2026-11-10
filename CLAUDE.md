@@ -16,7 +16,7 @@ clock has sufficiently low jitter, meaning it cannot use fractional
 multiplies or dividers.  Therefore only a limited number of
 industry standard resolutions would be  possible.  A 216 MHz pllh_aux can be
 divided by integers to support the following standard CEA/VESA pixel
-clock frequencies: 27, 36, 54 and 72 MHz.  Other RPI Zero W
+clock frequencies: 27, 36, 54, 72 and 108 MHz.  Other RPI Zero W
 frequencies based on integer divides and multiplies may also be
 possible.
 

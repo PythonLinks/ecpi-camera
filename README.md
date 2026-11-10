@@ -10,7 +10,7 @@ The above diagram shows the data flow.
 Camera -> MIPI CSI -> RPI Zero W -> DPI -> FPGA -> DVI. 
 
 The following diagram shows just how much functionality the RPi Zero W 
-Image Signal Processor (ISP) provides. 
+Image Signal Processor (ISP) and CPU provide.
 
 ![The RPi Image Signal Processor](images/RPiISP.png)
 
@@ -140,6 +140,14 @@ fine, and have some plusses and minuses.
 My preference is to use the Hammer Headers, but do not hammer them,
 use a vice to press fit them.  Press fitting is better for higher
 volume production.
+
+You have to make sure that the voltage supply pins do not touch, that would 
+fry something.  There are 4 voltage supply pins. 
+Here is a [diagram of the pinout](https://pinout.xyz/) for the usual 
+orientation.  Make sure you orient the board correctly.  Here is a 
+[diagram of the reverse pinout](./images/RPiInvertedPins.png) 
+for the pins inserted on the back of the board. 
+
 
 ## Booting the Raspberry Pi Zero W
 
