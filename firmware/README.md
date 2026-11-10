@@ -27,3 +27,9 @@ The default installation automatically detects a camera.
 While waiting for a RPi compatible camera to arrive, a test pattern generator 
 can be used to test the rest of the system. A number of test pattern 
 generators are available. It is also possible to display a stored image. 
+
+
+## AI Use
+
+Since I have never before configured a Raspberry Pi, claude wrote the
+configuration commands.
